@@ -59,8 +59,8 @@ RUN apt-get -qq update \
     && adduser atlantiss sudo \
     && printf "atlantiss ALL= NOPASSWD: ALL\\n" >> /etc/sudoers
 
-RUN update-rc.d mysql defaults && \
-    update-rc.d mysql start 
+RUN update-rc.d mysql enable && \
+    update-rc.d mysql defaults
 
 USER atlantiss
 WORKDIR /home/atlantiss
