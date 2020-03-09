@@ -59,7 +59,7 @@ RUN apt-get -qq update \
     && adduser atlantiss sudo \
     && printf "atlantiss ALL= NOPASSWD: ALL\\n" >> /etc/sudoers
 
-RUN update-rc.d mariadb mariadb && \
+RUN update-rc.d mariadb defaults && \
     update-rc.d mariadb start 
 
 USER atlantiss
