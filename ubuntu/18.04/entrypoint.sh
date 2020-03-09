@@ -4,6 +4,6 @@ if [[ "$@" == "bash" ]]; then
     exec $@
 fi
 
-sudo systemctl start mariadb
+systemctl start mariadb
 
 exec "$@"
