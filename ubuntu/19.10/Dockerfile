@@ -53,7 +53,7 @@ RUN apt-get -qq update \
     && ./bootstrap.sh \
     && ./b2 install -j 8 \
     && cd .. \
-    && rm -rf boost_1_72_0
+    && rm -rf boost_1_72_0 \
     && useradd -ms /bin/bash atlantiss \
     && printf "atlantiss:atlantiss" | chpasswd \
     && adduser atlantiss sudo \
