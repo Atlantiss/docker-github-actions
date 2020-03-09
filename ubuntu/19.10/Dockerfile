@@ -59,8 +59,8 @@ RUN apt-get -qq update \
     && adduser atlantiss sudo \
     && printf "atlantiss ALL= NOPASSWD: ALL\\n" >> /etc/sudoers
 
-RUN systemctl enable mariadb && \
-    systemctl start mariadb
+RUN update-rc.d mariadb mariadb && \
+    update-rc.d mariadb start 
 
 USER atlantiss
 WORKDIR /home/atlantiss
