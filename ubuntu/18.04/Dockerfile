@@ -1,7 +1,7 @@
 FROM ubuntu:latest
 
 RUN apt-get update \
-	&& apt-get -y --no-install-recommends curl install git clang cmake make gcc g++ libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev mariadb-client mariadb-server python-dev ninja-build ccache p7zip \
+	&& apt-get -y --no-install-recommends install curl git clang cmake make gcc g++ libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev mariadb-client mariadb-server python-dev ninja-build ccache p7zip \
 	&& apt-get clean -y \
 	&& rm -rf /var/lib/apt/lists/*
 
