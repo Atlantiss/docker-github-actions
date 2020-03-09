@@ -4,6 +4,6 @@ if [[ "$@" == "bash" ]]; then
     exec $@
 fi
 
-sudo systemctl start mysql
+sudo systemctl start mariadb
 
 exec "$@"
