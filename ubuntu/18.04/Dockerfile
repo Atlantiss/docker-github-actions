@@ -1,4 +1,12 @@
-FROM ubuntu:latest
+FROM ubuntu:18.04
+
+ENV LLVM_VERSION=9.0 \
+    CC=clang \
+    CXX=clang++ \
+    CMAKE_C_COMPILER=clang \
+    CMAKE_CXX_COMPILER=clang++ \
+    PYENV_ROOT=/opt/pyenv \
+    PATH=/opt/pyenv/shims:${PATH}
 
 RUN apt-get update \
 	&& apt-get -y --no-install-recommends install systemd ca-certificates curl git clang cmake make gcc g++ libmysqlclient-dev libssl-dev libbz2-dev libreadline-dev libncurses-dev mariadb-client mariadb-server python-dev ninja-build ccache p7zip \

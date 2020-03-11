@@ -10,7 +10,6 @@ ENV LLVM_VERSION=9.0 \
 
 RUN apt-get -qq update \
 	&& apt-get -y --no-install-recommends install \
-       sudo=1.* \
        wget=1.* \
        git=1:2.* \
        g++-multilib=4:9.* \
@@ -54,13 +53,9 @@ RUN apt-get -qq update \
     && ./b2 install -j 8 \
     && cd .. \
     && rm -rf boost_1_72_0 \
-    && useradd -ms /bin/bash atlantiss \
-    && printf "atlantiss:atlantiss" | chpasswd \
-    && adduser atlantiss sudo \
-    && printf "atlantiss ALL= NOPASSWD: ALL\\n" >> /etc/sudoers
+    && mkdir /home/workspace
 
-RUN update-rc.d mysql enable && \
+RUN service mysql enable && \
     update-rc.d mysql defaults
 
-USER atlantiss
-WORKDIR /home/atlantiss
+WORKDIR /home/workspace
