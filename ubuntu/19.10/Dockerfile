@@ -49,13 +49,18 @@ RUN apt-get -qq update \
     && rm cmake-3.16.4-Linux-x86_64.tar.gz \
     && curl -SL https://dl.bintray.com/boostorg/release/1.72.0/source/boost_1_72_0.tar.gz | tar -zx \
     && cd boost_1_72_0 \
+    && wget https://www.boost.org/patches/1_72_0/0001-revert-cease-dependence-on-range.patch \
+    && patch -Np1 -i 0001-revert-cease-dependence-on-range.patch \
     && ./bootstrap.sh \
     && ./b2 install -j 8 \
     && cd .. \
     && rm -rf boost_1_72_0 \
     && mkdir /home/workspace
 
-RUN service mysql enable && \
-    update-rc.d mysql defaults
+RUN update-rc.d mysql defaults
 
 WORKDIR /home/workspace
+
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
