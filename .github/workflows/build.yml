@@ -25,6 +25,7 @@ jobs:
           githubOrg: Atlantiss
           username: ${{ secrets.CR_REGISTRY_USER }}
           password: ${{ secrets.CR_REGISTRY_PAT }}
-          image: docker-images-core/windows-servercore-ltsc2019
+          image: Atlantiss/docker-images-core
+          tags: windows-servercore-ltsc2019
           dockerfile: Dockerfile
 
