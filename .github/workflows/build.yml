@@ -1,5 +1,8 @@
 name: Docker Image Build
 
+on:
+  push:
+
 jobs:
   build:
     name: 'Build'
