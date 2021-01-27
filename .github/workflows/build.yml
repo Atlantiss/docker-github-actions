@@ -18,12 +18,6 @@ jobs:
         id: slug
         run: echo "::set-output name=sha7::$(echo ${GITHUB_SHA} | cut -c1-7)"
       - 
-        name: Get branch name
-        run: echo "BRANCH_NAME=$(echo ${GITHUB_REF#refs/heads/} | tr / -)" >> $GITHUB_ENV
-      - 
-        name: Get repository variable in lowercase
-        run: echo "REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
-      - 
         name: Build & Push docker image
         uses: mr-smithers-excellent/docker-build-push@v5
         with:
@@ -31,6 +25,6 @@ jobs:
           githubOrg: Atlantiss
           username: ${{ secrets.CR_REGISTRY_USER }}
           password: ${{ secrets.CR_REGISTRY_PAT }}
-          image: ${{ env.REPOSITORY }}/${{ env.BRANCH_NAME }}
+          image: docker-images-core/windows-servercore-ltsc2019
           dockerfile: Dockerfile
 
