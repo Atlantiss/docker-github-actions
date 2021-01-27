@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:20.04 as build
 
 ARG CLANG_VERSION
 ARG CMAKE_VERSION
@@ -16,35 +16,34 @@ ENV LLVM_VERSION=${CLANG_VERSION} \
     PYENV_ROOT=/opt/pyenv \
     PATH=/opt/pyenv/shims:${PATH}
 
-RUN mkdir scripts
+WORKDIR /tmp
 
-ADD scripts/install_clang.sh scripts/install_clang.sh
-ADD scripts/install_boost.sh scripts/install_boost.sh
-ADD scripts/install_cmake.sh scripts/install_cmake.sh
-
-RUN chmod +x scripts/. -R
+COPY ./scripts/install_boost.sh /tmp/
+COPY ./scripts/install_clang.sh /tmp/
+COPY ./scripts/install_cmake.sh /tmp/
 
 RUN apt-get -qq update \
  && apt-get -y --no-install-recommends install \
     ca-certificates \
     curl \
-    wget \
     git \
     libssl-dev \
-    libc++-dev \
-    libc++abi-dev \
-    pkg-config \
-    libreadline-dev xz-utils \
-    libncurses5-dev \
+    libreadline-dev \
+    libncurses-dev \
     libmysqlclient-dev \
     libbz2-dev \
-    bzip2 \
     ccache \
     ninja-build \
-&& ln -s /usr/include/locale.h /usr/include/xlocale.h 
+&& ln -s /usr/include/locale.h /usr/include/xlocale.h \
+&& chmod +x /tmp/install_boost.sh \
+&& chmod +x /tmp/install_clang.sh \
+&& chmod +x /tmp/install_cmake.sh \
+&& /tmp/install_clang.sh \
+&& /tmp/install_cmake.sh \
+&& /tmp/install_boost.sh \
+&& apt-get clean \
+&& rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* 
 
-RUN scripts/install_clang.sh
-RUN scripts/install_cmake.sh
-RUN scripts/install_boost.sh
-
-RUN rm -rf /var/lib/apt/lists/*
+FROM scratch
+COPY --from=build / /
+WORKDIR /
