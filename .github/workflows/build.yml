@@ -24,8 +24,8 @@ jobs:
         name: Get repository variable in lowercase
         run: echo "REPOSITORY=$(echo $GITHUB_REPOSITORY | tr '[A-Z]' '[a-z]')" >> $GITHUB_ENV
       - 
-        name: Set up QEMU
-        uses: docker/setup-qemu-action@v1
+        name: Build & Push docker image
+        uses: mr-smithers-excellent/docker-build-push@v5
       -
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
@@ -40,6 +40,10 @@ jobs:
         name: Build and push
         uses: docker/build-push-action@v2
         with:
-          context: .
-          push: true
-          tags: ghcr.io/${{ env.REPOSITORY }}:${{ env.BRANCH_NAME }}
+          registry: ghcr.io
+          githubOrg: Atlantiss
+          username: ${{ secrets.CR_REGISTRY_USER }}
+          password: ${{ secrets.CR_REGISTRY_PAT }}
+          image: ${{ env.REPOSITORY }}/${{ env.BRANCH_NAME }}
+          dockerfile: Dockerfile
+
