@@ -34,6 +34,8 @@ RUN apt-get -qq update \
     libbz2-dev \
     ccache \
     ninja-build \
+    mysql-server \
+    expect \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
@@ -46,4 +48,4 @@ RUN apt-get -qq update \
 
 FROM scratch
 COPY --from=build / /
-WORKDIR /
+WORKDIR /home/workspace
