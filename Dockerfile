@@ -22,6 +22,9 @@ COPY ./scripts/install_boost.sh /tmp/
 COPY ./scripts/install_clang.sh /tmp/
 COPY ./scripts/install_cmake.sh /tmp/
 
+ENV TZ=Etc/UTC
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 RUN apt-get -qq update \
  && apt-get -y --no-install-recommends install \
     ca-certificates \
