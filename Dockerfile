@@ -41,6 +41,9 @@ RUN apt-get -qq update \
     expect \
     make \
     automake \
+    python3-pip \
+    libffi-dev \
+    python3-dev \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
