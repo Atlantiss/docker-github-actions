@@ -12,9 +12,9 @@ curl -SL https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_$
 cd boost_${BOOST_FILE_NAME}
 
 ./bootstrap.sh \
-    --with-toolset=gcc \
     --with-libraries=system,filesystem,program_options,iostreams,regex 
-./b2 toolset=gcc toolset=clang cxxstd=11 --build-dir=/tmp/build-boost install -j 8
+./b2 toolset=gcc toolset=clang cxxstd=11 --build-dir=/tmp/build-boost \
+./b2 install -j 8
 
 cd .. && rm -rf boost_${BOOST_FILE_NAME}
 
