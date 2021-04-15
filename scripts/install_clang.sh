@@ -14,5 +14,6 @@ update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSIO
 update-alternatives --install /usr/bin/cc cc /usr/bin/clang-${CLANG_VERSION_SHORT} 100
 update-alternatives --install /usr/bin/c++ c++ /usr/bin/clang++-${CLANG_VERSION_SHORT} 100
 update-alternatives --install /usr/bin/cpp cpp /usr/bin/clang++-${CLANG_VERSION_SHORT} 100
+update-alternatives --install /usr/bin/scan-build scan-build /usr/bin/scan-build-${CLANG_VERSION_SHORT} 100
 
 echo "Clang (${CLANG_VERSION}) installed."
