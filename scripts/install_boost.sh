@@ -13,7 +13,7 @@ cd boost_${BOOST_FILE_NAME}
 
 ./bootstrap.sh \
     --with-libraries=system,filesystem,program_options,iostreams,regex 
-./b2 toolset=clang cxxstd=11 --build-dir=/tmp/build-boost \
+./b2 toolset=gcc cxxstd=11 --build-dir=/tmp/build-boost \
 ./b2 install -j 8
 
 cd .. && rm -rf boost_${BOOST_FILE_NAME}
