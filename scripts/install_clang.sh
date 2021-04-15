@@ -7,7 +7,7 @@ fi
 
 CLANG_VERSION_SHORT=${CLANG_VERSION%.*}
 
-apt-get -y --no-install-recommends install clang-${CLANG_VERSION_SHORT}
+apt-get -y --no-install-recommends install clang-${CLANG_VERSION_SHORT} clang-tools-${CLANG_VERSION_SHORT}
 
 update-alternatives --install /usr/bin/clang++ clang++ /usr/bin/clang++-${CLANG_VERSION_SHORT} 100
 update-alternatives --install /usr/bin/clang clang /usr/bin/clang-${CLANG_VERSION_SHORT} 100
