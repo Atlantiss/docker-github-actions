@@ -7,7 +7,7 @@ fi
 
 BOOST_FILE_NAME=`echo "$BOOST_VERSION" | sed 's/\./_/g'`
 
-curl -SL https://dl.bintray.com/boostorg/release/${BOOST_VERSION}/source/boost_${BOOST_FILE_NAME}.tar.gz | tar -zx 
+curl -SL https://boostorg.jfrog.io/artifactory/main/release/${BOOST_VERSION}/source/boost_${BOOST_FILE_NAME}.tar.gz | tar -zx 
 
 cd boost_${BOOST_FILE_NAME}
 
