@@ -45,6 +45,7 @@ RUN apt-get -qq update \
     libffi-dev \
     python3-dev \
     build-essential \
+    zip \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
