@@ -46,6 +46,7 @@ RUN apt-get -qq update \
     python3-dev \
     build-essential \
     zip \
+    p7zip-full p7zip-rar \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
