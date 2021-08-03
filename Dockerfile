@@ -21,14 +21,23 @@ WORKDIR /tmp
 COPY ./scripts/install_boost.sh /tmp/
 COPY ./scripts/install_clang.sh /tmp/
 COPY ./scripts/install_cmake.sh /tmp/
+COPY ./scripts/install_docker.sh /tmp/
 
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 RUN apt-get -qq update \
  && apt-get -y --no-install-recommends install \
+    apt-transport-https \
+    gnupg \ 
+    lsb-release \
     ca-certificates \
-    curl \
+    curl
+
+RUN /tmp/install_docker.sh
+
+RUN apt-get -qq update \
+ && apt-get -y --no-install-recommends install \
     git \
     libssl-dev \
     libreadline-dev \
@@ -49,6 +58,7 @@ RUN apt-get -qq update \
     p7zip-full p7zip-rar \
     nodejs \
     npm \
+    docker-ce docker-ce-cli containerd.io \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
