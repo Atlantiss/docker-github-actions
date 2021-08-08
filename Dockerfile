@@ -12,6 +12,7 @@ RUN apt-get -qq update \
     libreadline-dev \
     libmysqlclient-dev \
     mysql-client \
+    netcat \
     gdb \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && apt-get clean \
