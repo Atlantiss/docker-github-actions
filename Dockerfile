@@ -59,6 +59,7 @@ RUN apt-get -qq update \
     nodejs \
     npm \
     docker-ce docker-ce-cli containerd.io \
+    libzmq3-dev \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
