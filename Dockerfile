@@ -22,7 +22,6 @@ COPY ./scripts/install_boost.sh /tmp/
 COPY ./scripts/install_clang.sh /tmp/
 COPY ./scripts/install_cmake.sh /tmp/
 COPY ./scripts/install_docker.sh /tmp/
-COPY ./scripts/install_ace.sh /tmp/
 
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
