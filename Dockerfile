@@ -22,6 +22,7 @@ COPY ./scripts/install_boost.sh /tmp/
 COPY ./scripts/install_clang.sh /tmp/
 COPY ./scripts/install_cmake.sh /tmp/
 COPY ./scripts/install_docker.sh /tmp/
+COPY ./scripts/install_ace.sh /tmp/
 
 ENV TZ=Etc/UTC
 RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
@@ -60,6 +61,7 @@ RUN apt-get -qq update \
     npm \
     docker-ce docker-ce-cli containerd.io \
     libzmq3-dev \
+    libace-dev \
 && ln -s /usr/include/locale.h /usr/include/xlocale.h \
 && chmod +x /tmp/install_boost.sh \
 && chmod +x /tmp/install_clang.sh \
