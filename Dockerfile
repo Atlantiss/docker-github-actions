@@ -43,7 +43,6 @@ RUN apt-get -qq update \
     libreadline-dev \
     libncurses-dev \
     libmysqlclient-dev \
-    libcurl4-openssl-dev \
     libbz2-dev \
     ccache \
     ninja-build \
